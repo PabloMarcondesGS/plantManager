@@ -24,10 +24,17 @@ export function EnviromentButton ({
 }: EnviromentButtonProps) {
     return (
         <RectButton 
-            style={styles.container}
+            style={[ 
+                styles.container,
+                active && styles.containerActive
+            ]}
             {...rest}
         >
-            <Text style={styles.text}>
+            <Text style={[
+                styles.text,
+                active && styles.textAcive
+            ]}>
+
                 {title}
             </Text>
         </RectButton>
@@ -41,10 +48,18 @@ const styles = StyleSheet.create({
         width: 76,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 12
+        borderRadius: 12,
+        marginRight: 5
+    },
+    containerActive: {
+        backgroundColor: colors.green_light
     },
     text: {
         color: colors.heading,
         fontFamily: fonts.text
+    },
+    textAcive: {
+        fontFamily: fonts.heading,
+        color: colors.green_dark,
     }
 })

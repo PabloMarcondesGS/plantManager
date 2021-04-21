@@ -2,7 +2,8 @@ import React from 'react';
 import { 
     View,
     Text,
-    StyleSheet
+    StyleSheet,
+    FlatList
 } from 'react-native';
 import { EnviromentButton } from '../components/EnviormentButton';
 
@@ -25,8 +26,19 @@ export function PlantSelect(){
                 </Text>
             </View>
 
-            <EnviromentButton title="Cozinha"/>
-
+            <View>
+                <FlatList 
+                    data={[ 1,2,3,4,5]}
+                    renderItem={({item }) => ( 
+                        <EnviromentButton 
+                            title="Cozinha" 
+                            active
+                        />
+                    )}
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                />
+            </View>
         </View>
     )
 }
