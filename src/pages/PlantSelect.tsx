@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
     View,
     Text,
@@ -8,10 +8,29 @@ import {
 import { EnviromentButton } from '../components/EnviormentButton';
 
 import { Header } from '../components/Header';
+import api from '../services/api';
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 
+interface EnviromentProps {
+    key: string;
+    title: string;
+}
+
 export function PlantSelect(){
+    const [enviroments, setEnviroments] = useState<EnviromentProps[]>([]);
+
+    useEffect(() => {
+        async function fetchEnviroment() {
+            const { data } = await api.get('plants_environments');
+
+            setEnviroments(data);
+        }
+
+        fetchEnviroment();
+
+    }, [])
+
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -28,15 +47,16 @@ export function PlantSelect(){
 
             <View>
                 <FlatList 
-                    data={[ 1,2,3,4,5]}
-                    renderItem={({item }) => ( 
+                    data={enviroments}
+                    renderItem={({ item }) => ( 
                         <EnviromentButton 
-                            title="Cozinha" 
+                            title={item.title} 
                             active
                         />
                     )}
                     horizontal
                     showsHorizontalScrollIndicator={false}
+                    contentContainerStyle={styles.enviromentList}
                 />
             </View>
         </View>
@@ -63,5 +83,12 @@ const styles = StyleSheet.create({
         fontSize: 17,
         lineHeight: 20,
         color: colors.heading
+    },
+    enviromentList: {
+        height: 40,
+        justifyContent: 'center',
+        paddingBottom: 5,
+        marginLeft: 32,
+        marginVertical: 32
     }
 })

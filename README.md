@@ -7,3 +7,4 @@
     -- Certifique de já ter na sua maquina o expo cli, node e react
     -- Abra a pasta principal do projeto, rode o comando yarn/npm install
     -- Após isso abra o terminal e rode o comando expo start e leia o qr code gerado( Forma de leitura pode mudar dependendo do aparelho)
+    -- Rodar o comando json-server ./src/services/server.json --host + 'IPDAMAQUINA' --port 3333 para deixar ativo a fake API
