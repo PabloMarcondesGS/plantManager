@@ -21,15 +21,15 @@ export function PlantSelect(){
     const [enviroments, setEnviroments] = useState<EnviromentProps[]>([]);
 
     useEffect(() => {
-        async function fetchEnviroment() {
+        async function fetchEnviroments(){
             const { data } = await api.get('plants_environments');
 
             setEnviroments(data);
         }
 
-        fetchEnviroment();
+        fetchEnviroments();
 
-    }, [])
+    }, []);
 
     return (
         <View style={styles.container}>
@@ -50,7 +50,7 @@ export function PlantSelect(){
                     data={enviroments}
                     renderItem={({ item }) => ( 
                         <EnviromentButton 
-                            title={item.title} 
+                            title="cozinha" 
                             active
                         />
                     )}
