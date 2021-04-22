@@ -24,7 +24,15 @@ export function PlantSelect(){
         async function fetchEnviroments(){
             const { data } = await api.get('plants_environments');
 
-            setEnviroments(data);
+            setEnviroments([
+                {
+                    key: 'all',
+                    title: 'Todos'
+                },
+                ...data
+            ])
+
+            // setEnviroments(data);
         }
 
         fetchEnviroments();
@@ -50,8 +58,8 @@ export function PlantSelect(){
                     data={enviroments}
                     renderItem={({ item }) => ( 
                         <EnviromentButton 
-                            title="cozinha" 
-                            active
+                            title={item.title}
+                            // active
                         />
                     )}
                     horizontal
