@@ -70,7 +70,7 @@ export function PlantSelect(){
         }
         
         fetchPlants()
-      }, []);
+    }, []);
 
 
     return (
