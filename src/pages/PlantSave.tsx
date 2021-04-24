@@ -11,28 +11,46 @@ import {
 } from 'react-native';
 import { getBottomSpace } from 'react-native-iphone-x-helper';
 import {SvgFromUri} from 'react-native-svg';
+import { useRoute } from '@react-navigation/core';
 
 import waterdrop from '../assets/waterdrop.png';
 import { Button } from '../components/Button';
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 
+interface Params {
+    plant: {
+        id: string;
+        name: string;
+        about: string;
+        water_tips: string;
+        photo: string;
+        environments: [string];
+        frequency: {
+            times: number;
+            repeat_every: string;
+        }
+    }
+}
+
 export function PlantSave(){
+    const route = useRoute();
+    const { plant } = route.params as Params;
+
     return(
         <View style={styles.container}>
             <View style={styles.plantInfo}>
                 <SvgFromUri
-                    uri={waterdrop}
+                    uri={plant.photo}
                     height={150}
                     width={150}
                 />
 
                 <Text style={styles.plantName}>
-                    Nome da Planta
+                    {plant.name}
                 </Text>
                 <Text style={styles.plantAbout}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                    Sunt earum, ex harum non ad officiis, aliquid quaerat, culpa iure sint quae dicta dolor fugiat perferendis excepturi consequuntur. Vero, corporis inventore.
+                    {plant.about}
                 </Text>
             </View>
         
@@ -44,7 +62,7 @@ export function PlantSave(){
                     />
 
                     <Text style={styles.tipText}>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        {plant.water_tips}
                     </Text>
                 </View>
 
